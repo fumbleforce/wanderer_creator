@@ -1,0 +1,19 @@
+<template name="main">
+
+    <h1>Creator</h1>
+
+    {{#if category "monster"}}
+        {{> createMonster}}
+    {{/if}}
+
+    {{#unless category}}
+        <button category="monster">Monster</button>
+        <button category="town">Town</button>
+        <button category="area">Area</button>
+        <button category="spell">Spell</button>
+        <button category="npc">NPC</button>
+        <button category="item">Item</button>
+    {{/unless}}
+
+
+</template>
