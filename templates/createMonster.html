@@ -1,7 +1,17 @@
-<template name="createMonster">
-
-<h1>Create Monster</h1>
-
-
-
+<template name="insertMonsterForm">
+  {{#autoForm collection="MonsterCollection" id="insertMonsterForm" type="insert"}}
+      <fieldset>
+        <legend>Add a Monster</legend>
+        {{> afQuickField name='id'}}
+        {{> afQuickField name='habitat'}}
+        {{> afQuickField name='danger'}}
+        {{> afQuickField name='health'}}
+        {{> afQuickField name='loot'}}
+        {{> afQuickField name='spells'}}
+        {{> afQuickField name='physicalSkills'}}
+        {{> afQuickField name='magicalSkills'}}
+        {{> afQuickField name='desc'}}
+      </fieldset>
+      <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
 </template>

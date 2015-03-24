@@ -11,3 +11,6 @@ cryptoquick:stylus-multi
 accounts-password
 reactive-var
 reactive-dict
+aldeed:autoform
+aldeed:collection2
+bootstrap
