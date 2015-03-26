@@ -1,19 +1,39 @@
 <template name="main">
 
-    <h1>Creator</h1>
+    <div class="main">
+        <h1>Creator</h1>
 
-    {{#if category "monster"}}
-        {{> monster}}
-    {{/if}}
+        <div class="ui secondary pointing menu">
+            <a category="monster" class="item">
+                <i class="icon spy"></i> Monster
+            </a>
+            <a category="item" class="item">
+                <i class="icon bar"></i> Item
+            </a>
+            <a category="spell" class="item">
+                <i class="icon bomb"></i> Spell
+            </a>
 
-    {{#unless category}}
-        <button category="monster">Monster</button>
-        <button category="town">Town</button>
-        <button category="area">Area</button>
-        <button category="spell">Spell</button>
-        <button category="npc">NPC</button>
-        <button category="item">Item</button>
-    {{/unless}}
+            <div class="right menu">
+                <a class="ui item">
+                    Logout
+                </a>
+            </div>
+        </div>
 
+        {{#if category "monster"}}
+            {{> monster}}
+        {{/if}}
+
+        {{#if category "item"}}
+            {{> item}}
+        {{/if}}
+
+        {{#if category "spell"}}
+            {{> spell}}
+        {{/if}}
+
+
+    </div>
 
 </template>

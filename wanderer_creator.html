@@ -3,6 +3,22 @@
 </head>
 
 <body>
-
-  {{> main}}
+    {{#if loggingIn}}
+        {{>loadingScreen}}
+    {{else}}
+        {{#if currentUser }}
+            {{> main}}
+        {{else}}
+            {{> user}}
+        {{/if}}
+    {{/if}}
 </body>
+
+<template name="loadingScreen">
+    <div class="loading-screen">
+        <h1>
+            Loading
+            <span class="loading-icon">&#10561;</span>
+        </h1>
+    </div>
+</template>

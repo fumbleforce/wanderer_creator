@@ -1,4 +1,5 @@
-<template name="monster">
+<template name="item">
+
     <div class="ui grid">
 
         <div class="ui secondary vertical menu column four wide">
@@ -15,32 +16,24 @@
             {{/if}}
         </div>
         <div class="column twelve wide">
-            {{#if submenu "view"}}
-                {{> viewMonster}}
-            {{/if}}
-
-            {{#if submenu "list"}}
-                {{> listMonsters}}
-            {{/if}}
-
-            {{#if submenu "create"}}
-                {{> insertMonsterForm}}
-            {{/if}}
+            {{> insertItemForm}}
         </div>
+
     </div>
+
 </template>
 
 
-<template name="viewMonster">
-    <h3>Monster</h3>
+<template name="viewItem">
+    <h3>Item</h3>
 
-    {{#with monster}}
+    {{#with item}}
         <h4>{{labelify id}}</h4>
     {{/with}}
 </template>
 
 
-<template name="listMonsters">
+<template name="listItems">
 
     <table class="ui table">
         <thead>
@@ -60,8 +53,8 @@
             </tr>
         </thead>
         <tbody>
-            {{#each monsters}}
-            <tr class="monster">
+            {{#each items}}
+            <tr item="{{_id}}">
                 <td>{{labelify id}}</td>
                 <td>{{for}}</td>
                 <td>{{against}}</td>
@@ -73,20 +66,6 @@
 
 </template>
 
-<template name="insertMonsterForm">
-  {{#autoForm collection="MonsterCollection" id="insertMonsterForm" type="insert"}}
-      <fieldset>
-        <legend>Add a Monster</legend>
-        {{> afQuickField name='id'}}
-        {{> afQuickField name='habitat'}}
-        {{> afQuickField name='danger'}}
-        {{> afQuickField name='health'}}
-        {{> afQuickField name='loot'}}
-        {{> afQuickField name='spells'}}
-        {{> afQuickField name='physicalSkills'}}
-        {{> afQuickField name='magicalSkills'}}
-        {{> afQuickField name='desc'}}
-      </fieldset>
-      <button type="submit" class="btn btn-primary">Insert</button>
-  {{/autoForm}}
+<template name="insertItemForm">
+  {{> quickForm collection="ItemCollection" id="insertItemForm" type="insert"}}
 </template>
