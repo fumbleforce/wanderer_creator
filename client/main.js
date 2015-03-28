@@ -1,9 +1,13 @@
-Session.set("createCategory", false);
+Session.set("collection", false);
+
+Template.main.rendered = function () {
+    $("[data-content]").popup();
+};
 
 Template.main.helpers({
     category: function (cat) {
-        if (cat == undefined) return Session.get("createCategory");
-        return Session.equals("createCategory", cat);
+        if (cat == undefined) return Session.get("collection");
+        return Session.equals("collection", cat);
     }
 });
 
@@ -13,9 +17,9 @@ Template.main.events({
         var category = e.currentTarget.getAttribute("category");
         $("[category]").removeClass("active");
         $(e.currentTarget).addClass("active");
-        Session.set("createCategory", category);
+        Session.set("collection", category);
     },
     "click .back": function () {
-        Session.set("createCategory", false);
+        Session.set("collection", false);
     }
 });

@@ -1,9 +1,4 @@
-<template name="spell">
 
-    {{> inserSpellForm}}
-
-</template>
-
-<template name="inserSpellForm">
-  {{> quickForm collection="SpellCollection" id="insertSpellForm" type="insert"}}
+<template name="insertSpellForm">
+    {{> quickForm collection="SpellCollection" id="insertSpellForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
 </template>

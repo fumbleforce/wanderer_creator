@@ -1,5 +1,4 @@
 <template name="item">
-
     <div class="ui grid">
 
         <div class="ui secondary vertical menu column four wide">
@@ -15,49 +14,165 @@
             </a>
             {{/if}}
         </div>
+
         <div class="column twelve wide">
-            {{> insertItemForm}}
+            {{#if submenu "view"}}
+                {{> viewItem}}
+            {{/if}}
+
+            {{#if submenu "list"}}
+                {{> listItems}}
+            {{/if}}
+
+            {{#if submenu "create"}}
+                {{> insertItemForm}}
+            {{/if}}
         </div>
 
     </div>
-
 </template>
 
 
 <template name="viewItem">
-    <h3>Item</h3>
-
     {{#with item}}
-        <h4>{{labelify id}}</h4>
+    <h4>{{labelify id}}</h4>
+
+    <div class="ui divider"></div>
+
+    <div class="ui grid">
+        <div class="ui column four wide green statistic">
+            <div class="value">
+                {{votesFor.length}}
+            </div>
+            <div class="label">
+                For<br>
+                <button class="ui button" vote="for" data-content="Vote for this being added to the game" data-variation="basic">Vote</button>
+            </div>
+        </div>
+
+        <div class="ui column four wide red statistic">
+            <div class="value">
+                {{votesAgainst.length}}
+            </div>
+            <div class="label">
+                Against<br>
+                <button class="ui button" vote="against" data-content="Vote against this being added to the game">Vote</button>
+            </div>
+        </div>
+
+        <div class="ui secondary segment column seven wide">
+            {{desc}}
+        </div>
+        <div class="ui column two"></div>
+        <table class="ui table column seven wide">
+            {{#if collection "monster"}}
+            <tr>
+                <td>Danger</td>
+                <td>{{danger}}</td>
+            </tr>
+            <tr>
+                <td>Health</td>
+                <td>{{health}}</td>
+            </tr>
+            <tr>
+                <td>Spells</td>
+                <td>
+                    {{#each spells}}
+                        {{{spellLink .}}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Loot</td>
+                <td>
+                    {{#each loot}}
+                        {{item}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Habitat</td>
+                <td>
+                    {{#each habitat}}
+                        {{labelify .}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Danger</td>
+                <td>{{danger}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+
+            {{#if collection "item"}}
+            <tr>
+                <td>Category</td>
+                <td>{{category}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+
+            {{#if collection "spell"}}
+            <tr>
+                <td>Affects</td>
+                <td>{{affects}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+        </table>
+    </div>
     {{/with}}
+
+    {{> tooltips}}
 </template>
 
 
 <template name="listItems">
 
-    <table class="ui table">
+    <div class="ui secondary  menu">
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input class="monster-search" type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="ui table clickable">
         <thead>
             <tr>
-                <th>
+                <th sort="id">
                     Name
                 </th>
-                <th>
+                <th sort="votesFor">
                     <i class="icon thumbs up"></i>
                 </th>
-                <th>
+                <th sort="votesAgainst">
                     <i class="icon thumbs down"></i>
                 </th>
-                <th>
+                <th sort="creator">
                     Creator
                 </th>
             </tr>
         </thead>
         <tbody>
             {{#each items}}
-            <tr item="{{_id}}">
+            <tr item="{{id}}">
                 <td>{{labelify id}}</td>
-                <td>{{for}}</td>
-                <td>{{against}}</td>
+                <td>{{votesFor.length}}</td>
+                <td>{{votesAgainst.length}}</td>
                 <td>{{creator}}</td>
             </tr>
             {{/each}}
@@ -67,5 +182,15 @@
 </template>
 
 <template name="insertItemForm">
-  {{> quickForm collection="ItemCollection" id="insertItemForm" type="insert"}}
+    {{#if collection "item"}}
+        {{> quickForm collection="ItemCollection" id="insertItemForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
+    {{/if}}
+
+    {{#if collection "monster"}}
+        {{> insertMonsterForm}}
+    {{/if}}
+
+    {{#if collection "spell"}}
+        {{> insertSpellForm}}
+    {{/if}}
 </template>

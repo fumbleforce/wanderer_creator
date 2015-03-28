@@ -21,18 +21,9 @@
             </div>
         </div>
 
-        {{#if category "monster"}}
-            {{> monster}}
-        {{/if}}
-
-        {{#if category "item"}}
+        {{#if category}}
             {{> item}}
         {{/if}}
-
-        {{#if category "spell"}}
-            {{> spell}}
-        {{/if}}
-
 
     </div>
 

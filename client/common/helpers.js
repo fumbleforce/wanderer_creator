@@ -32,6 +32,7 @@ Template.registerHelper("labelify", labelify);
 
 Template.registerHelper("itemLink", function (id) {
     var i = Item.get(id);
+    console.log(id, i)
     return "<span class='itemlink "+Item.quality[i.quality]+"' title='"+i.desc+"' data-toggle='tooltip'>"+labelify(id)+"</span>";
 });
 
