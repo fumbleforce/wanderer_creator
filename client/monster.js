@@ -14,14 +14,6 @@ Template.monster.helpers({
     submenuClass: function (el) {
         return Template.instance().submenu.get() === el ? "item active": "item";
     },
-
-    monsters: function () {
-        return MonsterCollection.find();
-    },
-
-    monster: function () {
-        return MonsterCollection.findOne(Template.instance().selectedMonster.get());
-    },
 });
 
 Template.monster.events({
@@ -29,10 +21,27 @@ Template.monster.events({
         var submenu = e.currentTarget.getAttribute("submenu");
         Template.instance().submenu.set(submenu);
     },
+});
 
+Template.listMonsters.helpers({
+    monsters: function () {
+        return MonsterCollection.find();
+    },
+});
+
+Template.listMonsters.events({
     "click [monster]": function (e) {
         var monster = e.currentTarget.getAttribute("monster");
         Template.instance().selectedMonster.set(monster);
     }
 });
 
+Template.viewMonster.helpers({
+    monster: function () {
+        return MonsterCollection.findOne(Template.instance().selectedMonster.get());
+    },
+});
+
+Template.viewMonster.events({
+
+});

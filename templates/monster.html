@@ -32,16 +32,62 @@
 
 
 <template name="viewMonster">
-    <h3>Monster</h3>
-
     {{#with monster}}
-        <h4>{{labelify id}}</h4>
+    <h4>{{labelify id}}</h4>
+
+    <div class="ui divider"></div>
+
+    <div class="ui grid">
+        <div class="green statistic">
+            <div class="value">
+                {{votesFor}}
+            </div>
+            <div class="label">
+                For
+            </div>
+        </div>
+
+        <div class="red statistic">
+            <div class="value">
+                {{votesAgainst}}
+            </div>
+            <div class="label">
+                Against
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ui grid">
+        <div class="ui segment">
+            {{desc}}
+        </div>
+
+        <table class="ui table column eight wide">
+            <tr>
+                <td>Danger</td>
+                <td>{{danger}}</td>
+            </tr>
+            <tr>
+                <p>Middle</p>
+            </tr>
+            <tr>
+                <p>Middle</p>
+            </tr>
+            <tr>
+                <p>Middle</p>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}
+            </tr>
+        </table>
+    </div>
     {{/with}}
 </template>
 
 
 <template name="listMonsters">
-
     <table class="ui table">
         <thead>
             <tr>
@@ -63,8 +109,8 @@
             {{#each monsters}}
             <tr class="monster">
                 <td>{{labelify id}}</td>
-                <td>{{for}}</td>
-                <td>{{against}}</td>
+                <td>{{votesFor}}</td>
+                <td>{{votesAgainst}}</td>
                 <td>{{creator}}</td>
             </tr>
             {{/each}}
