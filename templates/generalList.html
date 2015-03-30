@@ -1,0 +1,42 @@
+
+<template name="generalList">
+
+    <div class="ui secondary  menu">
+        <div class="item">
+            <div class="ui icon input">
+                <input class="search" type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <table class="ui table clickable">
+        <thead>
+            <tr>
+                <th sort="id">
+                    Name
+                </th>
+                <th sort="votesFor">
+                    <i class="icon thumbs up"></i>
+                </th>
+                <th sort="votesAgainst">
+                    <i class="icon thumbs down"></i>
+                </th>
+                <th sort="creator">
+                    Creator
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items}}
+            <tr item="{{id}}">
+                <td>{{labelify id}}</td>
+                <td>{{votesFor.length}}</td>
+                <td>{{votesAgainst.length}}</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</template>

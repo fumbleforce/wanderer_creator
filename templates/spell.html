@@ -1,4 +1,50 @@
 
 <template name="insertSpellForm">
-    {{> quickForm collection="SpellCollection" id="insertSpellForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
+    {{#autoForm collection="SpellCollection" id="insertSpellForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
+
+    {{> afQuickField name="id"}}
+    {{> afQuickField name="target" options="allowed" noselect=true}}
+    {{#if afFieldValueIs name="target" value="enemy"}}
+        {{> afQuickField name="damage"}}
+    {{/if}}
+    {{#if afFieldValueIs name="target" value="ally"}}
+        {{> afQuickField name="healing"}}
+    {{/if}}
+    {{> afQuickField name="baseSkill"}}
+    {{> afQuickField name="scaling"}}
+    {{> afQuickField name="requires"}}
+    {{> afQuickField name="desc" rows=10}}
+
+    {{/autoForm}}
+</template>
+
+
+<template name="insertSpellHelp">
+    <div class="ui styled fluid accordion">
+        <div class="active title">
+            <i class="dropdown icon"></i>
+            Spell id
+        </div>
+        <div class="active content">
+            <p>The ID is the spell name players will see in game. Must be unique.</p>
+        </div>
+
+        <div class="title">
+            <i class="dropdown icon"></i>
+            Target
+        </div>
+        <div class="content">
+            <p>Determines what the spell should be cast on.</p>
+        </div>
+
+        <div class="title">
+            <i class="dropdown icon"></i>
+            Description
+        </div>
+        <div class="content">
+            <p>A short description of the spell that will be displayed in the spell's tooltip.</p>
+        </div>
+    </div>
+
+    {{> accordion}}
 </template>

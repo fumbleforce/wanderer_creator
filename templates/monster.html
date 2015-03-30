@@ -1,4 +1,59 @@
 
 <template name="insertMonsterForm">
-  {{>quickForm collection="MonsterCollection" id="insertMonsterForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
+  {{#autoForm collection="MonsterCollection" id="insertMonsterForm" type="insert" omitFields="creator,votesFor,votesAgainst,accepted"}}
+
+    {{> afQuickField name="id"}}
+    {{#if afFieldIsInvalid name='id'}}
+      <span class="help-block">{{afFieldMessage name='id'}}</span>
+    {{/if}}
+
+    {{> afQuickField name="danger"}}
+    {{#if afFieldIsInvalid name='danger'}}
+      <span class="help-block">{{afFieldMessage name='danger'}}</span>
+    {{/if}}
+
+    {{> afQuickField name="health"}}
+    {{#if afFieldIsInvalid name='health'}}
+      <span class="help-block">{{afFieldMessage name='health'}}</span>
+    {{/if}}
+
+    {{> afArrayField name="habitat"}}
+    {{> afArrayField name="spells" options=spells}}
+    {{> afQuickField name="physicalSkills"}}
+    {{> afQuickField name="mentalSkills"}}
+    {{> afQuickField name="loot"}}
+    {{> afQuickField name="desc"}}
+
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template>
+
+<template name="insertMonsterHelp">
+    <div class="ui styled fluid accordion">
+        <div class="active title">
+            <i class="dropdown icon"></i>
+            Monster id
+        </div>
+        <div class="active content">
+            <p>The ID is the monster name players will see in game. Must be unique.</p>
+        </div>
+
+        <div class="title">
+            <i class="dropdown icon"></i>
+            Danger
+        </div>
+        <div class="content">
+            <p>The danger level of the zone the monster will appear in.</p>
+        </div>
+
+        <div class="title">
+            <i class="dropdown icon"></i>
+            Description
+        </div>
+        <div class="content">
+            <p>A short description of the monster that will be displayed when encountering the monster.</p>
+        </div>
+    </div>
+
+    {{> accordion}}
 </template>

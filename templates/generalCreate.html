@@ -1,0 +1,13 @@
+<template name="generalCreate">
+    {{#if collection "item"}}
+        {{> insertItemForm}}
+    {{/if}}
+
+    {{#if collection "monster"}}
+        {{> insertMonsterForm}}
+    {{/if}}
+
+    {{#if collection "spell"}}
+        {{> insertSpellForm}}
+    {{/if}}
+</template>

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export MONGO_URL=mongodb://master:quantumelevators@ds039271.mongolab.com:39271/wanderer

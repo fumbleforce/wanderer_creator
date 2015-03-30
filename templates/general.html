@@ -1,0 +1,49 @@
+<template name="general">
+    <div id="main-segment" class="ui top attached segment">
+
+        <div class="ui left rail very close">
+            <div class="ui vertical menu fluid">
+                <a submenu="view" class={{submenuClass "view"}}>
+                    <i class="cube icon"></i> View
+                </a>
+                <a submenu="list" class={{submenuClass "list"}}>
+                    <i class="list layout icon"></i> List
+                </a>
+                {{#if currentUser}}
+                <a submenu="create" class={{submenuClass "create"}}>
+                    <i class="add circle icon"></i> Create
+                </a>
+                {{/if}}
+            </div>
+            {{#if submenu "create"}}
+            <div class="ui sticky">
+                {{#if collection "item"}}
+                    {{> insertItemHelp}}
+                {{/if}}
+
+                {{#if collection "monster"}}
+                    {{> insertMonsterHelp}}
+                {{/if}}
+
+                {{#if collection "spell"}}
+                    {{> insertSpellHelp}}
+                {{/if}}
+            </div>
+            {{>sticky follow="#main-segment"}}
+            {{/if}}
+        </div>
+
+        {{#if submenu "view"}}
+            {{> generalView}}
+        {{/if}}
+
+        {{#if submenu "list"}}
+            {{> generalList}}
+        {{/if}}
+
+        {{#if submenu "create"}}
+            {{> generalCreate}}
+        {{/if}}
+
+    </div>
+</template>

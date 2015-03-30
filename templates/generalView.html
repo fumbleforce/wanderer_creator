@@ -1,0 +1,113 @@
+
+<template name="generalView">
+    {{#with item}}
+    <h4>{{labelify id}}</h4>
+
+    <div class="ui divider"></div>
+
+    <div class="ui compact segment basic">
+        <div class="ui two column middle statistics aligned relaxed fitted stackable grid relative">
+            <div class="ui column">
+                <div class="ui green statistic">
+                    <div class="value">
+                        {{votesFor.length}}
+                    </div>
+                    <div class="label">
+                        <button class="ui button" vote="for" data-content="Vote for this being added to the game" data-variation="basic">For</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui vertical divider">
+                Vote
+            </div>
+            <div class="ui column">
+                <div class="ui red statistic">
+                    <div class="value">
+                        {{votesAgainst.length}}
+                    </div>
+                    <div class="label">
+                        <button class="ui button" vote="against" data-content="Vote against this being added to the game">Against</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid">
+
+        <div class="ui secondary segment column seven wide">
+            {{desc}}
+        </div>
+
+        <div class="ui column two"></div>
+
+        <table class="ui table column seven wide">
+            {{#if collection "monster"}}
+            <tr>
+                <td>Danger</td>
+                <td>{{danger}}</td>
+            </tr>
+            <tr>
+                <td>Health</td>
+                <td>{{health}}</td>
+            </tr>
+            <tr>
+                <td>Spells</td>
+                <td>
+                    {{#each spells}}
+                        {{{spellLink .}}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Loot</td>
+                <td>
+                    {{#each loot}}
+                        {{item}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Habitat</td>
+                <td>
+                    {{#each habitat}}
+                        {{labelify .}}
+                    {{/each}}
+                </td>
+            </tr>
+            <tr>
+                <td>Danger</td>
+                <td>{{danger}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+
+            {{#if collection "item"}}
+            <tr>
+                <td>Category</td>
+                <td>{{category}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+
+            {{#if collection "spell"}}
+            <tr>
+                <td>Affects</td>
+                <td>{{affects}}</td>
+            </tr>
+            <tr>
+                <td>Creator</td>
+                <td>{{creator}}</td>
+            </tr>
+            {{/if}}
+        </table>
+    </div>
+    {{/with}}
+
+    {{> tooltips}}
+</template>
